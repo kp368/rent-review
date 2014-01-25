@@ -1,0 +1,42 @@
+$icon-font-path: "/static/bower_components/sass-bootstrap-compass/fonts/";
+
+@import 'sass-bootstrap-compass/sass/sass-bootstrap.scss';
+
+.header {
+  @include make-row;
+}
+
+.leader {
+  $img-size: 240px;
+  $img-cols: 3;
+  @include make-row;
+  @extend .jumbotron;
+  .house.wrapper {
+    @include make-md-column($img-cols);
+    img {
+      @extend .img-thumbnail;
+    }
+    width: $img-size;
+    height: $img-size;
+  }
+  .info {
+    @include make-md-column($grid-columns - $img-cols);
+    display: inline;
+    left-margin: $img-size + $grid-gutter-width;
+    
+    .price {
+      @extend .pull-right;
+    }
+  }
+}
+
+.rating {
+  .star.full {
+    @extend .glyphicon;
+    @extend .glyphicon-star;
+  }
+  .star.empty {
+    @extend .glyphicon;
+    @extend .glyphicon-star-empty;
+  }
+}
