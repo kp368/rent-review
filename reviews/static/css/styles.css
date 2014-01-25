@@ -7784,3 +7784,7 @@ td.visible-print {
     display: none !important;
   }
 }
+/* line 5, ../sass/styles.sass */
+#map-canvas {
+  height: 250px;
+}

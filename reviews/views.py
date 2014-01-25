@@ -13,7 +13,7 @@ def property(request, property_id):
 	addr = property.address
 	price = u'£700 pcm'
 	comments = property.review_set.all()
-	return render(request, "index2.html", {'address':addr, 'price':price, 'title':addr, 'comments':comments, 'property':property, 'current_user':request.user})
+	return render(request, "leader.html", {'address':addr, 'price':price, 'title':addr, 'comments':comments, 'property':property, 'current_user':request.user})
 
 def comment(request, property_id):
 	property = Property.objects.get(id=property_id)
@@ -27,4 +27,4 @@ def search(request):
 	property_list = Property.objects.filter(postcode=query.replace(" ", ""))
 	if len(property_list) == 1:
 		return HttpResponseRedirect(reverse('reviews:property', args=(property_list[0].id,)))
-	return HttpResponse(query)
+	return render(request, "list.html", {'title':"Search results for " + query, 'properties':property_list})
