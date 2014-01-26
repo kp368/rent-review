@@ -19,6 +19,8 @@ def comment(request, property_id):
     property = Property.objects.get(id=property_id)
     text = request.POST['comment_body']
     title = request.POST['comment_title']
+    if not title:
+        title = text[:95] + '...'
     r = Review(body=text, title=title, author=request.user, subject=property)
     r.save()
     return HttpResponseRedirect(reverse('reviews:property', args=(property_id,)))

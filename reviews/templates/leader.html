@@ -85,14 +85,14 @@
   {% for comment in comments reversed %}
 
   <li {% cycle '' 'class="timeline-inverted"' %}>
-    <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+    <div class="timeline-badge"><i class="glyphicon glyphicon-home"></i></div>
     <div class="timeline-panel">
       <div class="timeline-heading">
-        <h2 class="timeline-title">{{comment.title}}</h2>
+        <h3 class="timeline-title">{{comment.title}}</h3>
       </div>
-      <h4 class="timeline-body">
+      <div class="timeline-body">
         {{comment.body}}
-      </h4>
+        <div>
       <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> By: <a href="#">{{comment.author}}</a> on {{comment.date}}</small></p>
     </div>
   </li>
