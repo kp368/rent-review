@@ -9,7 +9,6 @@ $icon-font-path: "/static/bower_components/sass-bootstrap-compass/fonts/";
 .leader {
   $img-size: 240px;
   $img-cols: 3;
-  @include make-row;
   @extend .jumbotron;
   .house.wrapper {
     @include make-md-column($img-cols);

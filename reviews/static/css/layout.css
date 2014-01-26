@@ -7806,23 +7806,7 @@ td.visible-print {
   clear: both;
 }
 
-/* line 9, ../sass/layout.scss */
-.leader {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-/* line 21, ../bower_components/sass-bootstrap-compass/sass/_mixins.scss */
-.leader:before, .leader:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */
-}
-/* line 25, ../bower_components/sass-bootstrap-compass/sass/_mixins.scss */
-.leader:after {
-  clear: both;
-}
-/* line 14, ../sass/layout.scss */
+/* line 13, ../sass/layout.scss */
 .leader .house.wrapper {
   position: relative;
   min-height: 1px;
@@ -7832,13 +7816,13 @@ td.visible-print {
   height: 240px;
 }
 @media (min-width: 992px) {
-  /* line 14, ../sass/layout.scss */
+  /* line 13, ../sass/layout.scss */
   .leader .house.wrapper {
     float: left;
     width: 25%;
   }
 }
-/* line 22, ../sass/layout.scss */
+/* line 21, ../sass/layout.scss */
 .leader .info {
   position: relative;
   min-height: 1px;
@@ -7848,7 +7832,7 @@ td.visible-print {
   left-margin: 270px;
 }
 @media (min-width: 992px) {
-  /* line 22, ../sass/layout.scss */
+  /* line 21, ../sass/layout.scss */
   .leader .info {
     float: left;
     width: 75%;

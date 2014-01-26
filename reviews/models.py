@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class Property(models.Model):
     address = models.TextField()
     postcode = models.TextField()
+    description = models.TextField(default='')
     #more fields
     def __unicode__(self):
         return self.address
