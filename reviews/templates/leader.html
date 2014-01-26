@@ -112,12 +112,34 @@
                   {% csrf_token %}
                   <div class="form-group">
                     <textarea class="form-control" rows="5" name="comment_body"></textarea>
-                  </div>
-                  <div class="pull-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </form>
-              </div>
+                  </div>                             
+                  <div class="row">     
+                                 
+                    <div class="knob column">
+                      <div class="wrapper">
+                        <input type="text" value="75" class="dial" data-angleoffset="-125" data-anglearc="250" data-width="75" data-height="75">
+                      </div>
+                      <div class="label label-default">
+                        Cleanliness
+                      </div>
+                    </div>
+                    
+                    <div class="knob column">
+                      <div class="wrapper">
+                        <input type="text" value="75" class="dial" data-angleoffset="-125" data-anglearc="250" data-width="75" data-height="75">
+                      </div>
+                      <div class="label label-default">
+                        Helpfulness
+                      </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="pull-right">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
             </div>
           </li>
         </ul>

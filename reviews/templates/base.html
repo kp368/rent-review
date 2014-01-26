@@ -15,11 +15,11 @@
   <link rel="stylesheet" href="{% static "css/layout.css" %}">
   <link rel="stylesheet" href="{% static "css/styles.css" %}">
 
-  <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM71wD8C3Tqstr13LsjKbcmjLGgRJxzA8&sensor=true">
-  </script>
-  <script type="text/javascript">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM71wD8C3Tqstr13LsjKbcmjLGgRJxzA8&sensor=true"></script>
+  <script type="text/javascript" src="{% static 'bower_components/jquery/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bower_components/jQuery-Knob/js/jquery.knob.js' %}"></script>
   
+  <script type="text/javascript" charset="utf-8">
   var geocoder;
   var map;
 
@@ -50,6 +50,12 @@
   
   google.maps.event.addDomListener(window, 'load', initialize);
   
+  </script>
+  
+  <script>
+  $(function() {
+      $(".dial").knob();
+  });
   </script>
   
 </head>

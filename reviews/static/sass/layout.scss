@@ -39,3 +39,10 @@ $icon-font-path: "/static/bower_components/sass-bootstrap-compass/fonts/";
     @extend .glyphicon-star-empty;
   }
 }
+
+.knob.column {
+    @include make-md-column(2);
+    .wrapper {
+        @include center-block()
+    }
+}

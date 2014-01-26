@@ -7838,3 +7838,24 @@ td.visible-print {
     width: 75%;
   }
 }
+
+/* line 43, ../sass/layout.scss */
+.knob.column {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  /* line 43, ../sass/layout.scss */
+  .knob.column {
+    float: left;
+    width: 16.66667%;
+  }
+}
+/* line 45, ../sass/layout.scss */
+.knob.column .wrapper {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
