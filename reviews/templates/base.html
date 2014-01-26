@@ -31,7 +31,7 @@
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
     mapOptions);
-    codeAddress('{{property.address}}');
+    codeAddress('{{property.address|linebreaks}}, {{property.postcode}}');
   }
   
   function codeAddress(address) {

@@ -33,6 +33,7 @@ def new(request):
         property = Property()
         property.address = request.POST['new_address']
         property.postcode = request.POST['postcode']
+        property.description = request.POST['description']
         property.save()
         return HttpResponseRedirect(reverse('reviews:property', args=(property.id,)))
 
