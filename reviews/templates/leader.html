@@ -55,40 +55,40 @@
   </div>
 
 </div>
+
+
+{% if property.id %}
+
 <ul class="timeline">
   
   <li class="list-group-item">
     <div class="row">
-      <div class="col-xs-2 col-md-1">
-        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
-      </div>
       <div class="col-xs-10 col-md-11">
-        <div>
-          <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Star rating here</a>
-          <div class="mic-info">
-            By: <a href="#">{{user}}</a> on {% now "jS F Y H:i" %}
-          </div>
-        </div>
         <form role="form" action="{% url 'reviews:comment' property.id %}" method="post">
           {% csrf_token %}
           <div class="form-group">
-            <textarea class="form-control" rows="5" name="comment_body"></textarea>
+            <textarea class="form-control" rows="1" name="comment_title" placeholder="Title"></textarea>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" rows="5" name="comment_body" placeholder="Comment"></textarea>
           </div>
           <div class="pull-right">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
+          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> By: <a href="#">{{user}}</a> on {% now "M. d, Y" %}</small></p>
+          
         </form>
       </div>
     </div>
   </li>
-  
-  {% for comment in comments %}
+
+  {% for comment in comments reversed %}
 
   <li {% cycle '' 'class="timeline-inverted"' %}>
     <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
     <div class="timeline-panel">
       <div class="timeline-heading">
-        <h4 class="timeline-title">{{comment.title}}</h4>
+        <h2 class="timeline-title">{{comment.title}}</h2>
       </div>
       <h4 class="timeline-body">
         {{comment.body}}
@@ -97,74 +97,7 @@
     </div>
   </li>
   {% endfor %}
+  {% endif %}
 </ul>
 
-    {% if property.id %}
-    <div class="comments">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel panel-default widget">
-            <div class="panel-heading">
-              <span class="glyphicon glyphicon-comment"></span>
-              {% if comments|length == 0 %}
-              <h3 class="panel-title">
-                No comments yet, be the first to review this property!
-              </h3>
-              {% else %}
-              <h3 class="panel-title">
-                Reviews
-              </h3>
-              {% endif %}
-              <span class="label label-info">
-                {{comments|length}}
-              </span>
-            </div>
-            <div class="panel-body">
-              <ul class="list-group">
-                {% for comment in comments %}
-              
-                <li class="list-group-item">
-              
-                  <div class="row">
-                    <div class="col-xs-2 col-md-1">
-                      <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
-                    </div>
-                
-                    <div class="col-xs-10 col-md-11">
-                      <div>
-                        <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Star rating here</a>
-                        <div class="mic-info">
-                          By: <a href="#">{{comment.author}}</a> on 11 Nov 2013
-                        </div>
-                      </div>
-                      <div class="comment-text">
-                        {{comment.body}}
-                      </div>
-                      <div class="action">
-                        <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                          <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <button type="button" class="btn btn-success btn-xs" title="Approved">
-                          <span class="glyphicon glyphicon-ok"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-xs" title="Delete">
-                          <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                {% endfor %}
-              
-            
-              </ul>
-              <a href="#" class="btn btn-primary btn-sm btn-block" role="button">
-                <span class="glyphicon glyphicon-refresh"></span> More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endif %} 
-    {% endblock contents %}
+{% endblock contents %}
