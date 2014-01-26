@@ -18,7 +18,10 @@ def property(request, property_id):
 def comment(request, property_id):
     property = Property.objects.get(id=property_id)
     text = request.POST['comment_body']
-    r = Review(body=text, author=request.user, subject=property, rating=4)
+    title = request.POST['comment_title']
+    if not title:
+        title = text[:95] + '...'
+    r = Review(body=text, title=title, author=request.user, subject=property)
     r.save()
     return HttpResponseRedirect(reverse('reviews:property', args=(property_id,)))
     
@@ -33,6 +36,7 @@ def new(request):
         property = Property()
         property.address = request.POST['new_address']
         property.postcode = request.POST['postcode']
+        property.description = request.POST['description']
         property.save()
         return HttpResponseRedirect(reverse('reviews:property', args=(property.id,)))
 

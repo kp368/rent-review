@@ -1,117 +1,76 @@
 {% extends "base.html" %}
 {% block contents %}
 <div class="leader">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="map-canvas"></div>
+    </div>
+  </div>
+
   <div class="row">
     
     <div class="house wrapper">
-      <img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Margaret_Mitchell_house_atlanta_2006.jpg"/>
-    </div>
-    <div class="info">
-      {% if property.id %}
-      <p class="price">
-        {{property.price}}
-      </p>
-      <h2>{{property.address}} <br/> {{property.postcode}}</h2>
-      <div class="rating">
-        <i class="star full"></i>
-        <i class="star full"></i>
-        <i class="star full"></i>
-        <i class="star empty"></i>
-        <i class="star empty"></i>
+      <div class="image wrapper">
+        <img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Margaret_Mitchell_house_atlanta_2006.jpg"/>  
       </div>
-      <p>{{property.description}}</p>
-    
-    
-      {% else %}
-    
-      <form role="form" action="{% url 'reviews:new' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="postcode" value="{{property.postcode}}">
-        <div class="form-group">
-          <textarea class="form-control" rows="2" placeholder="Address" name="new_address"></textarea>
-        </div>
-        <h2>{{property.postcode}}</h2>
-        <div class="pull-right">
-          <button type="submit" class="btn btn-primary">Add Property</button>
-        </div>
-      </form>
       
-      {% endif %}
+      <div class="info">
+        {% if property.id %}
+        <p class="price">
+          {{property.price}}
+        </p>
+        <h2>{{property.address}} <br/> {{property.postcode}}</h2>
+        <div class="rating">
+          <i class="star full"></i>
+          <i class="star full"></i>
+          <i class="star full"></i>
+          <i class="star empty"></i>
+          <i class="star empty"></i>
+        </div>
+        <p>{{property.description}}</p>
+    
+    
+        {% else %}
+    
+        <form role="form" action="{% url 'reviews:new' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="postcode" value="{{property.postcode}}">
+          <div class="form-group">
+            <textarea class="form-control" rows="2" placeholder="Address" name="new_address"></textarea>
+          </div>
+          <h2>{{property.postcode}}</h2>
+          <div class="form-group">
+            <textarea class="form-control" rows="1" placeholder="Description" name="description"></textarea>
+          </div>
+          <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Add Property</button>
+          </div>
+        </form>
+      
+        {% endif %}
+      </div>
       
     </div>
-  </div>
-  
-  <div class="row">
-    <div id="map-canvas"></div>
   </div>
 
 </div>
+
+
 {% if property.id %}
-<div class="comments">
-  <div class="row">
-    <div class="panel panel-default widget">
-      <div class="panel-heading">
-        <span class="glyphicon glyphicon-comment"></span>
-        <h3 class="panel-title">
-          Reviews
-        </h3>
-        <span class="label label-info">
-          {{comments|length}}
-        </span>
-      </div>
-      <div class="panel-body">
-        <ul class="list-group">
-          {% for comment in comments %}
-              
-          <li class="list-group-item">
-              
-            <div class="row">
-              <div class="col-xs-2 col-md-1">
-                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
-              </div>
-                
-              <div class="col-xs-10 col-md-11">
-                <div>
-                  <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Star rating here</a>
-                  <div class="mic-info">
-                    By: <a href="#">{{comment.author}}</a> on 11 Nov 2013
-                  </div>
-                </div>
-                <div class="comment-text">
-                  {{comment.body}}
-                </div>
-                <div class="action">
-                  <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </button>
-                  <button type="button" class="btn btn-success btn-xs" title="Approved">
-                    <span class="glyphicon glyphicon-ok"></span>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-xs" title="Delete">
-                    <span class="glyphicon glyphicon-trash"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </li>
-          {% endfor %}
-              
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-xs-2 col-md-1">
-                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
-              </div>
-              <div class="col-xs-10 col-md-11">
-                <div>
-                  <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Star rating here</a>
-                  <div class="mic-info">
-                    By: <a href="#">{{user}}</a> on {% now "jS F Y H:i" %}
-                  </div>
-                </div>
-                <form role="form" action="{% url 'reviews:comment' property.id %}" method="post">
-                  {% csrf_token %}
-                  <div class="form-group">
-                    <textarea class="form-control" rows="5" name="comment_body"></textarea>
+
+<ul class="timeline">
+  
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-xs-10 col-md-11">
+        <form role="form" action="{% url 'reviews:comment' property.id %}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <textarea class="form-control" rows="1" name="comment_title" placeholder="Title"></textarea>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" rows="5" name="comment_body" placeholder="Comment"></textarea>
                   </div>                             
                   <div class="row">     
                                  
@@ -138,17 +97,29 @@
                 <div class="pull-right">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> By: <a href="#">{{user}}</a> on {% now "M. d, Y" %}</small></p>
+          
               </form>
             </div>
-            </div>
-          </li>
-        </ul>
-        <a href="#" class="btn btn-primary btn-sm btn-block" role="button">
-          <span class="glyphicon glyphicon-refresh"></span> More
-        </a>
-      </div>
     </div>
-  </div>
-</div>
-{% endif %} 
+  </li>
+
+  {% for comment in comments reversed %}
+
+  <li {% cycle '' 'class="timeline-inverted"' %}>
+    <div class="timeline-badge"><i class="glyphicon glyphicon-home"></i></div>
+    <div class="timeline-panel">
+      <div class="timeline-heading">
+        <h3 class="timeline-title">{{comment.title}}</h3>
+      </div>
+      <div class="timeline-body">
+        {{comment.body}}
+        <div>
+      <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> By: <a href="#">{{comment.author}}</a> on {{comment.date}}</small></p>
+    </div>
+  </li>
+  {% endfor %}
+  {% endif %}
+</ul>
+
 {% endblock contents %}

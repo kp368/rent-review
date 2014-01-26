@@ -12,7 +12,8 @@ class Property(models.Model):
 class Review(models.Model):
     author = models.ForeignKey(User)
     body = models.TextField(max_length=1000)
-    rating = models.PositiveSmallIntegerField()
+    title = models.TextField(max_length=100)
+    date = models.DateField(auto_now=True)
     subject = models.ForeignKey(Property)
     
     def __unicode__(self):
